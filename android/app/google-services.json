@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "828647961526",
+    "project_id": "ecomerce-8be97",
+    "storage_bucket": "ecomerce-8be97.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828647961526:android:12fd1d5d5cde1745bf4717",
+        "android_client_info": {
+          "package_name": "com.fsh.ecommerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCJYt6FBbIQaviak21VBa5mqOruz2fHYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
