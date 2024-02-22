@@ -20,6 +20,8 @@ dependencies:
   get: ^4.6.6
   cloud_firestore: ^4.15.5
   dropdown_button2: ^2.3.9
+  json_serializable: ^6.7.1
+  build_runner: ^2.4.8
 
 dev_dependencies:
   flutter_test:
