@@ -19,20 +19,32 @@ class HomePage extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title: Text("Products"),
+            title: Text(
+              "Products",
+              style: TextStyle(
+                  color: Colors.blueAccent,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w800),
+            ),
           ),
           body: ListView.builder(
               itemCount: itemsInList.length,
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(itemsInList.toString()),
-                  subtitle: Text("subtitle"),
-                  trailing: Icon(Icons.delete),
+                  subtitle:
+                      Text("subtitle", style: TextStyle(color: Colors.white)),
+                  trailing: Icon(Icons.delete, color: Colors.blue),
                 );
               }),
           floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.blueAccent,
+            child: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
             onPressed: () {
-              Get.to(const AddProduct());
+              Get.to(()=>const AddProduct());
             },
           ),
         );

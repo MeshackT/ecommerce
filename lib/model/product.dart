@@ -20,10 +20,10 @@ class Product {
   String? brand;
 
   @JsonKey(name: "price")
-  String? price;
+  double? price;
 
   @JsonKey(name: "offer")
-  String? Offer;
+  bool? offer;
 
   @JsonKey(name: "imageUrl")
   String? imageUrl;
@@ -36,10 +36,10 @@ class Product {
     this.description,
     this.price,
     this.imageUrl,
-    this.Offer,
+    this.offer,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) =>
       _$ProductFromJson(json);
-  Map<String, dynamic> toJson() => _$ProductFromJson(this);
+  Map<String, dynamic> toJson() => _$ProductToJson(this);
 }
