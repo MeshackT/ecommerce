@@ -27,16 +27,31 @@ class HomePage extends StatelessWidget {
                   fontWeight: FontWeight.w800),
             ),
           ),
-          body: ListView.builder(
-              itemCount: itemsInList.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(itemsInList.toString()),
-                  subtitle:
-                      Text("subtitle", style: TextStyle(color: Colors.white)),
-                  trailing: Icon(Icons.delete, color: Colors.blue),
-                );
-              }),
+          body: ctrl.products.isNotEmpty
+              ? ListView.builder(
+                  itemCount: ctrl.products.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(ctrl.products[index].name!,
+                          style: TextStyle(color: Colors.blue)),
+                      subtitle: Text(
+                          ctrl.products[index].price.toString() ?? "",
+                          style: TextStyle(color: Colors.blue)),
+                      trailing: IconButton(
+                        icon: Icon(Icons.delete, color: Colors.blue),
+                        onPressed: () {
+                          // delete the product
+                          ctrl.deleteProduct(ctrl.products[index].id!);
+                        },
+                      ),
+                    );
+                  })
+              : TextButton(
+                  child: Text("Test"),
+                  onPressed: () {
+                    ctrl.fetchProduct();
+                  },
+                ),
           floatingActionButton: FloatingActionButton(
             backgroundColor: Colors.blueAccent,
             child: const Icon(
@@ -44,7 +59,7 @@ class HomePage extends StatelessWidget {
               color: Colors.white,
             ),
             onPressed: () {
-              Get.to(()=>const AddProduct());
+              Get.to(() => const AddProduct());
             },
           ),
         );

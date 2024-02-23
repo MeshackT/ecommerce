@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce/model/product.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,6 +10,8 @@ class HomeController extends GetxController {
 
   // Collection reference to read the collections and id's
   late CollectionReference collectionReference;
+
+  List<Product> products = [];
 
 //   add products
   addProduct(
@@ -46,11 +49,39 @@ class HomeController extends GetxController {
     }
   }
 
-  @override
-  void onInit() {
-    collectionReference = firestore.collection('products');
-    super.onInit();
+  fetchProduct() async {
+    try {
+      // query the collection
+      QuerySnapshot productSnapShot = await collectionReference.get();
+      final List<Product> retrieveProducts = productSnapShot.docs
+          .map((e) => Product.fromJson(e.data() as Map<String, dynamic>))
+          .toList();
+      products.clear();
+      products.addAll(retrieveProducts);
+      update();
+      print("Getting the data: \n${retrieveProducts}");
+      // Get.snackbar("Found", "See you list below");
+      // update();
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
   }
 
-  setValuesToDefault() {}
+  deleteProduct(String docId) async {
+    try {
+      await collectionReference.doc(docId).delete();
+      fetchProduct();
+    } catch (e) {
+      Get.snackbar("Failed", "Failed to delete the product, try again later");
+    }
+  }
+
+  @override
+  Future<void> onInit() async {
+    collectionReference = firestore.collection('products');
+    await fetchProduct();
+    super.onInit();
+  }
 }
